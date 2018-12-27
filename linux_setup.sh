@@ -119,19 +119,19 @@ fi
 
 echo "Starting MongoDB with no auth"
 # Start the database creation (without --auth)
-gnome-terminal -x bash -c "sudo nohup mongod --dbpath $dbpath" 
+dbus-launch gnome-terminal -x bash -c "sudo nohup mongod --dbpath $dbpath" 
 echo
 echo "Sleeping for 30 seconds"
 sleep 30s
 
 # Initialize the database for edgex 
-gnome-terminal -x bash -c "sudo nohup mongo < init_mongo.js"
+dbus-launch gnome-terminal -x bash -c "sudo nohup mongo < init_mongo.js"
 echo
 echo "Initialize the database and sleep for 10 seconds"
 sleep 10s
 
 # Shutdown the database
-gnome-terminal -x bash -c "sudo nohup mongod --dbpath $dbpath --shutdown "
+dbus-launch gnome-terminal -x bash -c "sudo nohup mongod --dbpath $dbpath --shutdown "
 #echo
 echo "Shutting down the database and sleep for 10 seconds"
 sleep 10s
