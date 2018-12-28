@@ -300,7 +300,7 @@ services:
 
 
   device-mqtt:
-    image: juanmagal/docker-device-mqtt-go:prueba
+    image: juanman/docker-device-mqtt-go:prueba
     ports:
       - "49982:49982"
     container_name: edgex-device-mqtt
