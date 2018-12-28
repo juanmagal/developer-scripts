@@ -26,7 +26,7 @@ volumes:
 
 services:
   volume:
-    image: juanman/docker-edgex-volume:latest
+    image: edgexfoundry/docker-edgex-volume:0.6.0
     container_name: edgex-files
     networks:
       - edgex-network
