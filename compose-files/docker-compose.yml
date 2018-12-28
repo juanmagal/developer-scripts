@@ -26,7 +26,7 @@ volumes:
 
 services:
   volume:
-    image: juanman/docker-edgex-volume:latest
+    image: edgexfoundry/docker-edgex-volume:0.6.0
     container_name: edgex-files
     networks:
       - edgex-network
@@ -283,8 +283,24 @@ services:
 #      - data
 #      - command
 
+  mosquitto:
+    image: eclipse-mosquitto
+    hostname: mosquitto
+    container_name: mosquitto
+    expose:
+      - "1883"
+      - "9001"
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - edgex-network
+
+
   device-mqtt:
-    image: juanman/docker-device-mqtt-go:latest
+    image: juanmagal/docker-device-mqtt-go:prueba
     ports:
       - "49982:49982"
     container_name: edgex-device-mqtt
@@ -299,6 +315,7 @@ services:
     depends_on:
       - data
       - command
+      - mosquitto
 
 #  device-modbus:
 #    image: edgexfoundry/docker-device-modbus-go:0.7.1
