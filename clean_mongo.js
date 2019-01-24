@@ -41,3 +41,10 @@ db=db.getSiblingDB('scheduler')
 db.auth('scheduler','password');
 db.interval.remove({});
 db.intervalAction.remove({});
+db=db.getSiblingDB('notifications')
+db.auth('notifications','password');
+db.notification.remove({});
+db.subscription.remove({});
+db.transmission.remove({});
+db=db.getSiblingDB('exportclient')
+db.exportConfiguration.remove({});
