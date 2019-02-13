@@ -115,8 +115,16 @@ kubectl apply -f k8s/services/rules-engine-service.yaml
 kubectl apply -f k8s/deployments/rules-engine-deployment.yaml
 
 ```
+### 14. Setup Rules Engine Service
 
-### 14. Create MetalLB  L2 Load Balancer to provide external access to Mainflux Services
+```
+kubectl apply -f k8s/services/rules-engine-service.yaml
+
+kubectl apply -f k8s/deployments/rules-engine-deployment.yaml
+
+```
+
+### 15. Create MetalLB  L2 Load Balancer to provide external access to Mainflux Services
 
 For more information see [MetalLB L2 tutorial](https://metallb.universe.tf/tutorial/layer2/)
 
@@ -126,6 +134,6 @@ kubectl apply -f k8s/metallb/metallb.yaml
 kubectl apply -f k8s/metallb/layer2-config.yaml
 ```
 
-### 15. Configure Internet access
+### 16. Configure Internet access
 Configure NAT on your Firewall to forward port 1883 (MQTT)
 
