@@ -1,18 +1,31 @@
-deviceMqttImage: juanman/docker-device-mqtt-go:prueba2
+deviceMqttImage: juanman/docker-device-mqtt-go:latest
 
+# volumes
 volumes:
-  data_db:
-    name: "db-data"
-    path: "/data/db"
+  accessMode: ReadWriteOnce
+  size: 250Mi
   logs:
-    name: "edgex-logs"
-    path: "/edgex/logs"
-  consul_config:
-    name: "consul-config"
-    path: "/consul/config"
-  consul_data:
-    name: "consul-data"
-    path: "/consul/data"
+    size: 500Mi
+    claimName: "logs-claim"
+    path: "/tmp/edgex/logs"
+    name: "logs"
+    diskName: "logs-disk"
+    mountPath: "/edgex/logs"
+
+
+#volumes:
+#  data_db:
+#    name: "db-data"
+#    path: "/data/db"
+#  logs:
+#    name: "edgex-logs"
+#    path: "/edgex/logs"
+#  consul_config:
+#    name: "consul-config"
+#    path: "/consul/config"
+#  consul_data:
+#    name: "consul-data"
+#    path: "/consul/data"
 
 
 edgex_device_mqtt:
