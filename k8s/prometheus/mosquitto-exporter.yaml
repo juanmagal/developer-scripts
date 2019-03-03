@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: mosquitto-exporter
+  name: mosquitto-exporter
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        io.kompose.service: mosquitto-exporter
+    spec:
+      containers:
+      - image: pcc/mosquitto-exporter
+        env:
+          - name: BROKER_ENDPOINT
+            value: "tcp://mosquitto:1883"
+          - name: MQTT_USER
+            value: "admin"
+          - name: MQTT_PASS
+            value: "public"
+        name: mosquitto-exporter
+        ports:
+        - containerPort: 9234
+        resources: {}
+      restartPolicy: Always
+
+
