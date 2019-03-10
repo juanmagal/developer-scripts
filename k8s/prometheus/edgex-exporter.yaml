@@ -9,6 +9,7 @@ spec:
   - name: "9410"
     port: 9410
     targetPort: 9410
+  type: LoadBalancer
   selector:
     io.kompose.service: edgex-exporter
 ---

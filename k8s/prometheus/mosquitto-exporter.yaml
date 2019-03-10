@@ -9,6 +9,7 @@ spec:
   - name: "9234"
     port: 9234
     targetPort: 9234
+  type: LoadBalancer
   selector:
     io.kompose.service: mosquitto-exporter
 ---
