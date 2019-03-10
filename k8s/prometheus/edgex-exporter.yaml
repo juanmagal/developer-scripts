@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: edgex-exporter
+  name: edgex-exporter
+spec:
+  ports:
+  - name: "9410"
+    port: 9410
+    targetPort: 9410
+  selector:
+    io.kompose.service: edgex-exporter
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: edgex-exporter
+  name: edgex-exporter
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        io.kompose.service: edgex-exporter
+    spec:
+      containers:
+      - args:
+        - --coredata.server=http://edgex-core-data:48080/api/v1
+        - --metadata.server=http://edgex-core-metadata:48081/api/v1
+        - --consul.server=http://edgex-core-consul:8500
+        image: juanman/edgex-exporter:latest
+        name: edgex-exporter
+        ports:
+        - containerPort: 9410
+        resources: {}
+      restartPolicy: Always
